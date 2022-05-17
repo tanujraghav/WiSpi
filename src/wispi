@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+echo -e "
+\e[1mWiSpi\e[0m: Wireless Network Spyware\e[0m, \e[1mv0.0\e[0m
+\e[1mEN354\e[0m - Introduction to Cyber Threats
+
+Designed and Developed by \e[1mTanuj Raghav, 19/11/EC/027, Group #13 \e[0m
+\e[1mURL\e[0m: https://github.com/tanujraghav/WiSpi.git
+"
+
