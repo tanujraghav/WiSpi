@@ -18,4 +18,3 @@ $ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv EDCDF21C9D2751E
 $ sudo apt update
 $ sudo apt install wispi
 ```
-
