@@ -9,5 +9,5 @@ Vcs-Git: https://github.com/tanujraghav/WiSpi.git
 
 Package: wispi
 Architecture: any
-Depends: python3 (>=3.8), curl, ${misc:Depends}
+Depends: cron, curl, python3 (>=3.8), xxd, ${misc:Depends}
 Description: Wireless Network Spyware

