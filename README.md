@@ -1,5 +1,5 @@
 # EN354 - Introduction to Cyber Threats
-### Research Presentation: "WiFi Network Spyware"
+### Research Presentation: "Wireless Network Spyware"
 ---
 
 ### Instructor
