@@ -1,1 +1,3 @@
 src/wispi /usr/bin/
+src/spyware.sh opt/pysnake/
+src/parser.py opt/pysnake/
