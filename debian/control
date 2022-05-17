@@ -1,0 +1,12 @@
+Source: wispi
+Section: misc
+Priority: optional
+Maintainer: Tanuj Raghav <raghavtanuj.official@gmail.com>
+Build-Depends: debhelper-compat (= 12)
+Standards-Version: 4.4.1
+Vcs-Git: https://github.com/tanujraghav/WiSpi.git
+
+Package: wispi
+Architecture: any
+Depends: ${misc:Depends}
+Description: Wireless Network Spyware
